@@ -1,0 +1,12 @@
+1、sonar历史版本下载地址:
+  https://www.sonarsource.com/products/sonarqube/downloads/historical-downloads/
+2、破解版本为: sonarqube-2025.5.0.113872
+   破解之后的项目: /study-sonar/sonar/
+   1、修改内容为/lib/sonar-application-2025.5.0.113872.jar
+3、初始密码为: admin/admin
+   sonar下的目录为初始化数据账户密码: admin/1234Lwq@qq.com
+4、进行的额外配置: 关闭了es的磁盘容量限制
+5、下载之后直接启动，使用token.txt证书
+
+
+

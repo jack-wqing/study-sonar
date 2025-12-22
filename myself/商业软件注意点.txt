@@ -1,0 +1,6 @@
+1.处理点: 商业软件经过了混淆和删除了字节码行信息[用于调试]
+  结论: 因为没有字节码行信息，所以不能远程调试；经过了混淆所以反编译的代码很难理解
+2.不能通过字节码工具；比如byte viewer、jd-gui、Recaf等工作直接修改字节码
+  结论: 因为直接修改改不了StackMapTable【描述方法执行过程中栈帧（Stack Frame）的类型状态】；执行会报错
+3.Recaf 直接修改字节码可能出现 无法追踪StackMapTable；所以报错 ERROR: Failed saving changes for 'com/sonarsource/I/S/l' - Reason: 'Fix the invalid input'
+4.❤️❤️❤️通过ASM修改字节码，可以自动计算StackMapTable信息 ❤️❤️❤️

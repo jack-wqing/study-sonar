@@ -1,0 +1,34 @@
+1、证书验证类
+   入口类:
+        步骤一、类: com.sonar.entitlements.api.controller.b
+              方法: setLegacyLicense(LegacyLicenseRestRequest var1)
+   逻辑判断类:
+        步骤二、类: com.sonarsource.I.F.l.b
+              方法: public void Û(String var1, boolean var2)
+              位置: image/整体判断逻辑.png
+   证书验证类:
+        步骤三、类: com.sonarsource.I.S.l
+              方法: public boolean Û(R var1)
+              具体修改字节码的方法:  1、boolean 鯥(R var1)
+                                  2、boolean 具(R var1)
+        修改之前的方法展示:
+              image/前-证书验证.png
+        修改之后的方法展示: 修改方法证书验证成功与否都返回true
+              位置:image/证书验证.png
+                  image/证书验证方法-1.png
+                  image/证书验证方法-2.png
+
+2、字节码修改类: com.sonar.byteupdate.ByteUpdate
+        1、解压: sonar-application-2025.5.0.113872.jar
+        2、找到 com.sonarsource.I.S.l 类
+        3、使用com.sonar.byteupdate.ByteUpdate进行特定位置的字节码修改
+        4、修改之后替换原来类:  jar uf sonar-application-2025.5.0.113872.jar com/sonarsource/I/S/l.class
+           注意替换必须是全类名的方式才能到正确的位置
+
+3、证书生成类:
+    1、证书需要的元数据: myself/证书元信息.txt
+    2、通过元数据生成token:
+          类: com.sonar.byteupdate.Base64Encode
+
+
+
