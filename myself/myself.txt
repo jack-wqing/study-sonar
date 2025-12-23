@@ -8,5 +8,6 @@
 4、进行的额外配置: 关闭了es的磁盘容量限制
 5、下载之后直接启动，使用token.txt证书
 
-
+6、客户端下载地址
+    https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/scanners/sonarscanner
 
