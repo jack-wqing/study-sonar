@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-declare image='swr.cn-north-4.xxx.com/zs-base/sonarqube-enterprise:25.5-v1'
+declare image='swr.cn-north-4.xxx.com/zs-base/sonarqube-enterprise:25.4-v1'
 declare image_latest='swr.cn-north-4.xxx.com/zs-base/cicd-base:latest'
 
 # login harbor:

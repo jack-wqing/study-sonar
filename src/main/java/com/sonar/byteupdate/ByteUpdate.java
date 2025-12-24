@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 public class ByteUpdate {
     public static void main(String[] args) throws Exception {
 
-        String classPath = "/Users/tyc/l.class";
+        String classPath = "/Users/tyc/_.class";
 
         byte[] bytes = Files.readAllBytes(Paths.get(classPath));
 
@@ -25,7 +25,8 @@ public class ByteUpdate {
                                              String signature, String[] exceptions) {
 
                 // 目标方法：boolean 鯥(R) 与 boolean 具(R)
-                boolean match = name.equals("鯥") || name.equals("具");
+                String fullName = name + desc;
+                boolean match = fullName.equals("꿳(Lcom/sonarsource/j/J/c;[B)Z") || fullName.equals("佚(Lcom/sonarsource/j/J/c;[B)Z");
 
                 MethodVisitor mv = super.visitMethod(access, name, desc, signature, exceptions);
 
@@ -52,7 +53,7 @@ public class ByteUpdate {
         cr.accept(cv, 0);
 
         byte[] out = cw.toByteArray();
-        Files.write(Paths.get("/Users/tyc/l.new.class"), out);
+        Files.write(Paths.get("/Users/tyc/_.new.class"), out);
 
     }
 }
