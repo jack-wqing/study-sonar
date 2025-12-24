@@ -1,0 +1,23 @@
+FROM eclipse-temurin:17-jdk-jammy
+
+ENV SONAR_HOME=/opt/sonarqube
+ENV JAVA_HOME=/opt/java/openjdk
+
+WORKDIR /opt
+
+COPY ./sonarqube /opt/
+
+# 设置时区 & 权限
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+ && useradd -r sonarqube \
+ && chown -R sonarqube:sonarqube /opt/sonarqube \
+ && chmod -R 755 /opt/sonarqube
+
+USER sonarqube
+
+EXPOSE 9000
+
+CMD ["/opt/sonarqube/bin/linux-x86-64/sonar.sh", "console"]
+
+
+
