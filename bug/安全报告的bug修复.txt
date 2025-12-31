@@ -1,0 +1,13 @@
+1、不能通过jar xf的方式解压【sonar-application-2025.4.4.119049.jar】然后通过jar cf/ jar cfm的方式在打jar
+  缺点: 核心启动 jar 的 MANIFEST + boot loader 结构被破坏
+
+操作:
+    第一步: 解压找到: org/sonar/db/qualityprofile/ActiveRuleMapper.xml 文件
+    第二步: 修改 selectByHotspotAndSoftwareQualityAndProfileUuids方法下的语句
+        官方修改：
+           - a.impacts LIKE CONCAT(CONCAT('%', #{quality}), '%')
+           + a.impacts LIKE '%' || CAST(#{quality} AS VARCHAR) || '%'
+    第三步: 通过jar uf sonar-application-2025.4.4.119049.jar org/sonar/db/qualityprofile/ActiveRuleMapper.xml修改真实的文件
+
+
+

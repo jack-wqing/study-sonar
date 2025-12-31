@@ -37,4 +37,5 @@
           类: com.sonar.byteupdate.Base64Encode
 
 
-
+4、25.4版本的安全报告sql存储bug
+    修复方式在: study-sonar/bug/安全报告的bug修复.txt

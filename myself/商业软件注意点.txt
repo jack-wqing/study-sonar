@@ -1,3 +1,6 @@
+0.商业版的主启动jar不能通过【jar xf】解压之后用【jar cf / jar cfm】重新打包；核心启动jar的MANIFEST+boot loader结构被破坏
+  只能通过: jar uf的方式更新；比如：
+   jar uf sonar-application-2025.4.4.119049.jar org/sonar/db/qualityprofile/ActiveRuleMapper.xml
 1.处理点: 商业软件经过了混淆和删除了字节码行信息[用于调试]
   结论: 因为没有字节码行信息，所以不能远程调试；经过了混淆所以反编译的代码很难理解
 2.不能通过字节码工具；比如byte viewer、jd-gui、Recaf等工作直接修改字节码
