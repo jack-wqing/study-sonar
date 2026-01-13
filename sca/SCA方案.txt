@@ -1,0 +1,11 @@
+1、生成软件物料清单: Software Bill Of Materials (SBOM)
+   工具下载: https://github.com/anchore/syft/releases
+
+2、通过生成jar扫描:  /Users/tyc/sca/syft_1.39.0_darwin_arm64/syft dir:. -o cyclonedx-json > sbom-jars.json
+
+3、查看扫描的信息:  jq -r '.components[]? | [.name, .version, (.licenses[]?.license.id // "NO_LICENSE")] | @tsv' sbom-jars.json
+
+4、建立私有离线仓库
+  mvn -Dmaven.repo.local=$PROJECT_REPO -DskipTests clean package
+  扫描仓库sbom.json
+

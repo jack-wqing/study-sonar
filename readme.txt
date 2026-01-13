@@ -1,0 +1,1 @@
+ /Users/tyc/work-tools/sonar-scanner-7.3.0.5189-macosx-aarch64/bin/sonar-scanner -Dsonar.projectKey=study-sonar -Dsonar.sources=src -Dsonar.java.binaries=target/classes -Dsonar.host.url=http://localhost:9000 -Dsonar.token=sqa_abbc06b280ac8033f6780c16269e07b6400b6fce
