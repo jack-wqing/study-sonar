@@ -1,5 +1,8 @@
-0、对sonar的jar进行解压操作
-   unzip -n  sonar-application-2025.4.4.119049.jar -d sonar
+0、对sonar的jar进行解压操作: 解压的过程有可能类丢失，可以java的读取某个class文件
+   java文件: com.sonar.byteupdate.JarClassExtractor
+   unzip -n  sonar-application-2025.4.4.119049.jar -d sonar   // 相同类覆盖
+   unzip -o  sonar-application-2025.4.4.119049.jar -d sonar   // 相同类不覆盖
+   jar xf sonar-application-2025.4.4.119049.jar
 
 1、证书验证类
    入口类:
@@ -23,19 +26,24 @@
                   /image/后-证书验证方法-1.png
                   /image/后-证书验证方法-2.png
 
-2、字节码修改类: com.sonar.byteupdate.ByteUpdate
+2、字节码修改类: com.sonar.byteupdate.ClassMethodReturnByteCodeUpdate
         1、解压: sonar-application-2025.4.4.119049.jar
            unzip -n  sonar-application-2025.4.4.119049.jar -d sonar
         2、找到 com.sonarsource.j.J._ 类
-        3、使用com.sonar.byteupdate.ByteUpdate进行特定位置的字节码修改
+        3、使用com.sonar.byteupdate.ClassMethodReturnByteCodeUpdate进行特定位置的字节码修改
         4、修改之后替换原来类:  jar uf sonar-application-2025.4.4.119049.jar com/sonarsource/j/J/_.class
            注意替换必须是全类名的方式才能到正确的位置
 
-3、证书生成类:
-    1、证书需要的元数据: myself/证书元信息.txt
-    2、通过元数据生成token:
-          类: com.sonar.byteupdate.Base64Encode
-
+3、修改版本验证逻辑: CeServer程序在ExecuteStatelessOnFinishStep -> StatelessFinishExtension -> StatelessFinishExtension 会执行版本验证
+        需要修改类的全路径: com.sonarsource.j._.v.class(实现StatelessFinishExtension接口)
+        原始class类为: class/v.class; 字节码修改之后文件为:vnew.class（需要修改v.class）替换原本jar中的文件
+        执行修改的类是: com.sonar.byteupdate.ClassMethodClear
+        执行修改:jar uf sonar-application-2025.4.4.119049.jar com/sonarsource/j/_/v.class
 
 4、25.4版本的安全报告sql存储bug
     修复方式在: study-sonar/bug/安全报告的bug修复.txt
+
+5、证书生成类:
+    1、证书需要的元数据: myself/证书元信息.txt
+    2、通过元数据生成token:
+          类: com.sonar.byteupdate.Base64Encode

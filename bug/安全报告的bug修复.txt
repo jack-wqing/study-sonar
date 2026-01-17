@@ -2,6 +2,7 @@
   缺点: 核心启动 jar 的 MANIFEST + boot loader 结构被破坏
 
 操作:
+    修改之后的文件:/Users/tyc/my-projects/java/study-sonar/bug/ActiveRuleMapper.xml
     第一步: 解压找到: org/sonar/db/qualityprofile/ActiveRuleMapper.xml 文件
     第二步: 修改 selectByHotspotAndSoftwareQualityAndProfileUuids方法下的语句
         官方修改：

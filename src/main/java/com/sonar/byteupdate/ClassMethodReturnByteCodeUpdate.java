@@ -9,7 +9,7 @@ import org.objectweb.asm.Opcodes;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class ByteUpdate {
+public class ClassMethodReturnByteCodeUpdate {
     public static void main(String[] args) throws Exception {
 
         String classPath = "/Users/tyc/_.class";
