@@ -34,7 +34,8 @@
         4、修改之后替换原来类:  jar uf sonar-application-2025.4.4.119049.jar com/sonarsource/j/J/_.class
            注意替换必须是全类名的方式才能到正确的位置
 
-3、修改版本验证逻辑: CeServer程序在ExecuteStatelessOnFinishStep -> StatelessFinishExtension -> StatelessFinishExtension 会执行版本验证
+3、修改版本验证逻辑: CeServer程序在CeWorkerImpl -> ReportTaskProcessor(CeTaskProcessor) ->  ComputationStepExecutor
+                -> ExecuteStatelessOnFinishStep -> StatelessFinishExtension  \\执行版本验证会执行版本验证 2 != 0
         需要修改类的全路径: com.sonarsource.j._.v.class(实现StatelessFinishExtension接口)
         原始class类为: class/v.class; 字节码修改之后文件为:vnew.class（需要修改v.class）替换原本jar中的文件
         执行修改的类是: com.sonar.byteupdate.ClassMethodClear
