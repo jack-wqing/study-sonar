@@ -9,3 +9,5 @@
   mvn -Dmaven.repo.local=$PROJECT_REPO -DskipTests clean package
   扫描仓库sbom.json
 
+java 项目maven依赖扫描
+
